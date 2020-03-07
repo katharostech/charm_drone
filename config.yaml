@@ -1,0 +1,58 @@
+# These are config values that users can set from the GUI or the commandline
+options:
+  bitbucket-client-id:
+    type: string
+    default: 
+    description: A Bitbucket OAuth Consumer Key
+  bitbucket-client-secret:
+    type: string
+    default: 
+    description: A Bitbucket OAuth Consumer Key's Secret
+  github-client-id:
+    type: string
+    default:
+    description: A GitHub OAuth Client ID
+  github-client-secret:
+    type: string
+    default:
+    description: A GitHub OAuth Client Secret
+  github-server:
+    type: string
+    default:
+    description: A GitHub Enterprise Server Address (Not required if using public GitHub)
+  gitlab-client-id: 
+    type: string
+    default:
+    description: A GitLab OAuth Client ID
+  gitlab-client-secret:
+    type: string
+    default:
+    description: A GitLab OAuth Client Secret
+  gitlab-server:
+    type: string
+    default:
+    description: A GitLab Server Address
+  gitea-client-id:
+    type: string
+    default:
+    description: A Gitea OAuth Client ID
+  gitea-client-secret:
+    type: string
+    default:
+    description: A Gitea OAuth Client Secret
+  gitea-server:
+    type: string
+    default:
+    description: A Gitea Server Address
+  server-host:
+    type: string
+    default:
+    description: Host or domain name Drone will be served under
+  server-proto:
+    type: string
+    default: https
+    description: Protocol under which your host or domain will be served publicly. (Either 'http' or 'https')
+  tls-autocert:
+    type: boolean
+    default: false
+    description: If true, generates a free SSL Cert via LetsEncrypt.

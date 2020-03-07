@@ -1,0 +1,25 @@
+name: drone
+display-name: Drone
+summary: Drone is a self-service Continuous Delivery platform for busy development teams.
+maintainer: opax <opax@katharostech.com>
+series:
+  - bionic
+description: |
+  Drone is a self-service Continuous Delivery platform for busy development teams.
+tags:
+  # Replace "misc" with one or more whitelisted tags from this list:
+  # https://jujucharms.com/docs/stable/authors-charm-metadata
+  - ops
+  - application_development
+subordinate: false
+provides:
+  website:
+    interface: http
+  drone-rpc:
+    interface: drone
+# requires:
+#   requires-relation:
+#     interface: interface-name
+# peers:
+#   peer-relation:
+#     interface: interface-name

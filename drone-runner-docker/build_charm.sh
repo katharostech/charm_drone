@@ -2,9 +2,9 @@
 set -e
 
 BUILD_DIR=./build
-TARGET_DIR=${BUILD_DIR}/drone
+TARGET_DIR=${BUILD_DIR}/drone-runner-docker
 
-lucky charm build -l
+lucky charm build
 
 # Remove build / push scripts from build dir
 rm -f "${TARGET_DIR}/build_charm.sh"

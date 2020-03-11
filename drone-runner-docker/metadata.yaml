@@ -1,0 +1,17 @@
+name: drone-runner-docker
+display-name: Docker Drone Runner
+summary: A Docker Runner is a daemon to execute Drone Pipelines in Docker Containers.
+maintainer: opax <opax@katharostech.com>
+series:
+  - bionic
+description: |
+  A Docker Runner is a daemon to execute Drone Pipelines in Docker Containers.
+tags:
+  # Replace "misc" with one or more whitelisted tags from this list:
+  # https://jujucharms.com/docs/stable/authors-charm-metadata
+  - ops
+  - application_development
+subordinate: false
+requires:
+  drone-rpc:
+    interface: drone

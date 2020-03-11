@@ -49,5 +49,4 @@ lucky container env set \
     "DRONE_SERVER_PROTO=${server_proto}" \
     "DRONE_TLS_AUTOCERT=${tls_autocert}"
 
-
 lucky set-status -n config-status active

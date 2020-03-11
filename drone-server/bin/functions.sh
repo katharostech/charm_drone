@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 # function to send log messages to a file
 log_this () {
@@ -10,7 +11,7 @@ log_this () {
     logdir=/var/log/lucky
     script="${0}"
     scriptbase=$(basename -s ".sh" "${script}")
-    logname="bpim-${scriptbase}"
+    logname="${scriptbase}"
     logfile="${logdir}/${logname}-${now}.log"
 
     # create the dir if it doesn't exist
@@ -40,7 +41,7 @@ set_http_relation () {
   log_this "hostname: $(lucky private-address)"
   log_this "port: ${bind_port}"
 
-  # Publish the BPIM listen address to the relation
+  # Publish the listen address to the relation
   lucky relation set "hostname=$(lucky private-address)"
   lucky relation set "port=${bind_port}"
 }
@@ -96,7 +97,7 @@ sc_config_check () {
   [ -n ${bitbucket_client_secret} ]; then
     # Ensure all required args are provided, otherwise block
     if [ -z ${bitbucket_client_id} ] ||
-    [-z ${bitbucket_client_secret} ]; then
+    [ -z ${bitbucket_client_secret} ]; then
       lucky set-status -n config-status blocked \
       "Bitbucket Cloud config attempted, but requires ID and Secret"
       exit 0
@@ -142,7 +143,7 @@ sc_config_check () {
 }
 
 set_drone_rpc_relation () {
-  set_rpc_secret
-  rpc_secret=$(lucky kv get rpc_secret)
-  lucky relation set "rpc_secret=${rpc_secret}"
+  lucky relation set --app "rpc_secret=$(lucky kv get rpc_secret)"
+  lucky relation set --app "server_host=$(lucky get-config server-host)"
+  lucky relation set --app "server_proto=$(lucky get-config server-proto)"
 }

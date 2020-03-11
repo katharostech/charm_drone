@@ -25,4 +25,4 @@ elif [ ${LUCKY_HOOK} == "drone-rpc-relation-broken" ]; then
 fi
 
 # Do this stuff regardless of which hook is running
-lucky set-status -n website-relation-status active
+lucky set-status -n drone-rpc-relation-status active

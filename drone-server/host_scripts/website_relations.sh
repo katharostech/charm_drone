@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 # Source the helper functions
 . functions.sh
 # initialize to false. the first call to

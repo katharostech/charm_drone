@@ -1,5 +1,5 @@
-name: drone
-display-name: Drone
+name: drone-server
+display-name: Drone Server
 summary: Drone is a self-service Continuous Delivery platform for busy development teams.
 maintainer: opax <opax@katharostech.com>
 series:

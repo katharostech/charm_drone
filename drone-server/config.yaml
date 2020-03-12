@@ -44,6 +44,10 @@ options:
     type: string
     default:
     description: A Gitea Server Address
+  admin:
+    type: string
+    default:
+    description: Drone Admin user
   server-host:
     type: string
     default:

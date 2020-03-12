@@ -45,6 +45,7 @@ lucky container env set \
     "DRONE_BITBUCKET_CLIENT_ID=${bitbucket_client_id}" \
     "DRONE_BITBUCKET_CLIENT_SECRET=${bitbucket_client_secret}" \
     "DRONE_RPC_SECRET=${rpc_secret}" \
+    "DRONE_USER_CREATE=username:${admin},admin:true" \
     "DRONE_SERVER_HOST=${server_host}" \
     "DRONE_SERVER_PROTO=${server_proto}" \
     "DRONE_TLS_AUTOCERT=${tls_autocert}"

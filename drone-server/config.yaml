@@ -56,6 +56,10 @@ options:
     type: string
     default: https
     description: Protocol under which your host or domain will be served publicly. (Either 'http' or 'https')
+  server-volume:
+    type: string
+    default:
+    description: Volume name or absolute path for Drone Server data persistence
   tls-autocert:
     type: boolean
     default: false

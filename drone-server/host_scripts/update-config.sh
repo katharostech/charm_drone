@@ -50,4 +50,11 @@ lucky container env set \
     "DRONE_SERVER_PROTO=${server_proto}" \
     "DRONE_TLS_AUTOCERT=${tls_autocert}"
 
+# If a volume name has been provided, create it
+drone_volume=$(lucky get-config server-volume)
+if [ -n ${drone_volume} ]; then
+    # Add a volume for Drone data
+    lucky container volume add ${drone_volume} /data
+fi
+
 lucky set-status -n config-status active

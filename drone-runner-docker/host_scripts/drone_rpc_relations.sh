@@ -12,16 +12,11 @@ lucky set-status -n drone-rpc-relation-status maintenance \
 
 # Do different stuff based on which hook is running
 if [ ${LUCKY_HOOK} == "drone-rpc-relation-joined" ]; then
-  increment_relation_counter
-  # Get relation data and store it in the KV
-  get_relation_data
+  # Get relation data and set container params
+  set_relation_data
 elif [ ${LUCKY_HOOK} == "drone-rpc-relation-changed" ]; then
-  # Get relation data and store it in the KV
-  get_relation_data
-elif [ ${LUCKY_HOOK} == "drone-rpc-relation-departed" ]; then
-  reset_relation
-elif [ ${LUCKY_HOOK} == "drone-rpc-relation-broken" ]; then
-  reset_relation
+  # Get relation data and set container params
+  set_relation_data
 fi
 
 lucky set-status -n drone-rpc-relation-status active

@@ -15,5 +15,8 @@ lucky set-status maintenance 'Installing Docker Drone Runner'
 # Create a Docker container by setting the container image to use
 lucky container image set drone/drone-runner-docker:1
 
+# Get relation data and set container params
+set_relation_data
+
 # Indicate we are done installing
 lucky set-status active

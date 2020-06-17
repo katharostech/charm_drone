@@ -31,8 +31,8 @@ hooks:
 #         sleep 3
 #         lucky set-status active
 
-  config-changed:
-    - host-script: update_config.sh
+  # config-changed:
+  #   - host-script: update_config.sh
 #       # If a script is async, the next script in the list will be run immediately without waiting
 #       # for the async script to exit. 
 #       async: true
@@ -52,13 +52,13 @@ hooks:
 #       # You can also override the shell command that will be used to run inline scripts
 #       shell-command: ["/bin/sh", "-c"]
   drone-rpc-relation-joined:
-    - host-script: update_config.sh
+    - host-script: drone_rpc_relations.sh
   drone-rpc-relation-changed:
-    - host-script: update_config.sh
+    - host-script: drone_rpc_relations.sh
   drone-rpc-relation-departed:
-    - host-script: update_config.sh
-  # drone-rpc-relation-broken:
-  #   - host-script: update_config.sh
+    - host-script: drone_rpc_relations.sh
+  drone-rpc-relation-broken:
+    - host-script: drone_rpc_relations.sh
 
 # # These are periodic jobs, scheduled by the Lucky daemon. They do not touch your system crontab
 # # You specify the cron schedule to run the task with. The crontab format is different than the

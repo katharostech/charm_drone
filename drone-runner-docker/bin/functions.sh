@@ -35,3 +35,23 @@ set_container_port () {
     lucky kv set bind_port="$rand_port"
   fi
 }
+
+set_relation_data () {
+  lucky container env set \
+    "DRONE_RPC_SECRET=$(lucky relation get --app rpc_secret)" \
+    "DRONE_RPC_HOST=$(lucky relation get --app server_host)" \
+    "DRONE_RPC_PROTO=$(lucky relation get --app server_proto)" \
+    "DRONE_RUNNER_CAPACITY=2" \
+    "DRONE_RUNNER_NAME=$(hostname)"
+  lucky container volume add /var/run/docker.sock /var/run/docker.sock
+
+  # Remove previously opened ports
+  lucky port close --all
+  lucky container port remove --all 
+
+  # Bind the container port to host
+  set_container_port
+  bind_port=$(lucky kv get bind_port)
+  lucky port open ${bind_port}
+  lucky container port add ${bind_port}:3000
+}

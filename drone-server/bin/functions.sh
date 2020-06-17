@@ -77,6 +77,7 @@ sc_config_check () {
   gitea_client_id=$(lucky get-config gitea-client-id)
   gitea_client_secret=$(lucky get-config gitea-client-secret)
   gitea_server=$(lucky get-config gitea-server)
+  admin=$(lucky get-config admin)
   server_host=$(lucky get-config server-host)
   server_proto=$(lucky get-config server-proto)
   tls_autocert=$(lucky get-config tls-autocert)

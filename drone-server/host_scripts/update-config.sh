@@ -45,8 +45,16 @@ lucky container env set \
     "DRONE_BITBUCKET_CLIENT_ID=${bitbucket_client_id}" \
     "DRONE_BITBUCKET_CLIENT_SECRET=${bitbucket_client_secret}" \
     "DRONE_RPC_SECRET=${rpc_secret}" \
+    "DRONE_USER_CREATE=username:${admin},admin:true" \
     "DRONE_SERVER_HOST=${server_host}" \
     "DRONE_SERVER_PROTO=${server_proto}" \
     "DRONE_TLS_AUTOCERT=${tls_autocert}"
+
+# If a volume name has been provided, create it
+drone_volume=$(lucky get-config server-volume)
+if [ -n ${drone_volume} ]; then
+    # Add a volume for Drone data
+    lucky container volume add ${drone_volume} /data
+fi
 
 lucky set-status -n config-status active

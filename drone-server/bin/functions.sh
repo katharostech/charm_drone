@@ -74,6 +74,7 @@ sc_config_check () {
   gitlab_client_id=$(lucky get-config gitlab-client-id)
   gitlab_client_secret=$(lucky get-config gitlab-client-secret)
   gitlab_server=$(lucky get-config gitlab-server)
+  gitlab_always_auth=$(lucky get-config gitlab-always-auth)
   gitea_client_id=$(lucky get-config gitea-client-id)
   gitea_client_secret=$(lucky get-config gitea-client-secret)
   gitea_server=$(lucky get-config gitea-server)
@@ -83,54 +84,54 @@ sc_config_check () {
   tls_autocert=$(lucky get-config tls-autocert)
   
   # Check global configs
-  if [ -z ${server_host} ]; then
+  if [ -z "${server_host}" ]; then
     lucky set-status -n config-status blocked \
     "Config required: 'server-host'"
     exit 0
-  elif [ -z ${server_proto} ]; then
+  elif [ -z "${server_proto}" ]; then
     lucky set-status -n config-status blocked \
     "Config required: 'server-proto'"
     exit 0
   fi
 
   # Bitbucket Cloud Config
-  if [ -n ${bitbucket_client_id} ] ||
-  [ -n ${bitbucket_client_secret} ]; then
+  if [ -n "${bitbucket_client_id}" ] ||
+  [ -n "${bitbucket_client_secret}" ]; then
     # Ensure all required args are provided, otherwise block
-    if [ -z ${bitbucket_client_id} ] ||
-    [ -z ${bitbucket_client_secret} ]; then
+    if [ -z "${bitbucket_client_id}" ] ||
+    [ -z "${bitbucket_client_secret}" ]; then
       lucky set-status -n config-status blocked \
       "Bitbucket Cloud config attempted, but requires ID and Secret"
       exit 0
     fi
   # GitHub
-  elif [ -n ${github_client_id} ] ||
-  [ -n ${github_client_secret} ] ||
-  [ -n ${github_server} ]; then
-    if [ -z ${github_client_id} ] ||
-    [ -z ${github_client_secret} ]; then
+  elif [ -n "${github_client_id}" ] ||
+  [ -n "${github_client_secret}" ] ||
+  [ -n "${github_server}" ]; then
+    if [ -z "${github_client_id}" ] ||
+    [ -z "${github_client_secret}" ]; then
       lucky set-status -n config-status blocked \
       "GitHub config attempted, but requires ID and Secret"
       exit 0
     fi
   # GitLab
-  elif [ -n ${gitlab_client_id} ] ||
-  [ -n ${gitlab_client_secret} ] ||
-  [ -n ${gitlab_server} ]; then
-    if [ -z ${gitlab_client_id} ] ||
-    [ -z ${gitlab_client_secret} ] ||
-    [ -z ${gitlab_server} ]; then
+  elif [ -n "${gitlab_client_id}" ] ||
+  [ -n "${gitlab_client_secret}" ] ||
+  [ -n "${gitlab_server}" ]; then
+    if [ -z "${gitlab_client_id}" ] ||
+    [ -z "${gitlab_client_secret}" ] ||
+    [ -z "${gitlab_server}" ]; then
       lucky set-status -n config-status blocked \
       "GitLab config attempted, but requires ID, Secret, and Server"
       exit 0
     fi
   # Gitea
-  elif [ -n ${gitea_client_id} ] ||
-  [ -n ${gitea_client_secret} ] ||
-  [ -n ${gitea_server} ]; then
-    if [ -z ${gitea_client_id} ] ||
-    [ -z ${gitea_client_secret} ] ||
-    [ -z ${gitea_server} ]; then
+  elif [ -n "${gitea_client_id}" ] ||
+  [ -n "${gitea_client_secret}" ] ||
+  [ -n "${gitea_server}" ]; then
+    if [ -z "${gitea_client_id}" ] ||
+    [ -z "${gitea_client_secret}" ] ||
+    [ -z "${gitea_server}" ]; then
       lucky set-status -n config-status blocked \
       "Gitea config attempted, but requires ID, Secret, and Server"
       exit 0

@@ -2,11 +2,11 @@
 options:
   bitbucket-client-id:
     type: string
-    default: 
+    default:
     description: A Bitbucket OAuth Consumer Key
   bitbucket-client-secret:
     type: string
-    default: 
+    default:
     description: A Bitbucket OAuth Consumer Key's Secret
   github-client-id:
     type: string
@@ -20,7 +20,7 @@ options:
     type: string
     default:
     description: A GitHub Enterprise Server Address (Not required if using public GitHub)
-  gitlab-client-id: 
+  gitlab-client-id:
     type: string
     default:
     description: A GitLab OAuth Client ID
@@ -32,6 +32,13 @@ options:
     type: string
     default:
     description: A GitLab Server Address
+  gitlab-always-auth:
+    type: boolean
+    default: false
+    description: >
+      DRONE_GIT_ALWAYS_AUTH 
+      Optional boolean value configures Drone to authenticate when cloning public repositories. 
+      This should only be enabled when using self-hosted GitLab with private mode enable.
   gitea-client-id:
     type: string
     default:

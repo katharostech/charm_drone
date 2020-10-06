@@ -44,6 +44,10 @@ rpc_secret=$(lucky kv get rpc_secret)
 lucky container env set \
     "DRONE_BITBUCKET_CLIENT_ID=${bitbucket_client_id}" \
     "DRONE_BITBUCKET_CLIENT_SECRET=${bitbucket_client_secret}" \
+    "DRONE_GITLAB_CLIENT_ID=${gitlab_client_id}" \
+    "DRONE_GITLAB_CLIENT_SECRET=${gitlab_client_secret}" \
+    "DRONE_GITLAB_SERVER=${gitlab_server}" \
+    "DRONE_GIT_ALWAYS_AUTH=${gitlab_always_auth}" \
     "DRONE_RPC_SECRET=${rpc_secret}" \
     "DRONE_USER_CREATE=username:${admin},admin:true" \
     "DRONE_SERVER_HOST=${server_host}" \

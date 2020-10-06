@@ -4,6 +4,7 @@ summary: Drone is a self-service Continuous Delivery platform for busy developme
 maintainer: opax <opax@katharostech.com>
 series:
   - bionic
+  - focal
 description: |
   Drone is a self-service Continuous Delivery platform for busy development teams.
 tags:

@@ -4,6 +4,7 @@ summary: A Docker Runner is a daemon to execute Drone Pipelines in Docker Contai
 maintainer: opax <opax@katharostech.com>
 series:
   - bionic
+  - focal
 description: |
   A Docker Runner is a daemon to execute Drone Pipelines in Docker Containers.
 tags:

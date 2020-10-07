@@ -36,7 +36,7 @@ options:
     type: boolean
     default: false
     description: >
-      DRONE_GIT_ALWAYS_AUTH 
+      DRONE_GIT_ALWAYS_AUTH: 
       Optional boolean value configures Drone to authenticate when cloning public repositories. 
       This should only be enabled when using self-hosted GitLab with private mode enable.
   gitea-client-id:
@@ -63,6 +63,16 @@ options:
     type: string
     default: https
     description: Protocol under which your host or domain will be served publicly. (Either 'http' or 'https')
+  server-secret:
+    type: string
+    default:
+    description: >
+      DRONE_RPC_SECRET: 
+      Provides the shared secret used by the Drone server to authenticate http requests. Drone Runners need
+      to provide this secret to connect to the server. If not provided here, a random secret will be generated
+      for communication with related charms. However, if remote Runners need to connect, i.e. external to Juju,
+      then providing a secret here is the only way to ensure you can provide the correct secret to connect, as 
+      the secret is not exposed otherwise and is kept hidden within the Juju charming internals.
   server-volume:
     type: string
     default:

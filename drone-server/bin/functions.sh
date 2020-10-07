@@ -56,12 +56,18 @@ set_container_port () {
 }
 
 set_rpc_secret () {
-  # Get random string if not set
-  if [ -z "$(lucky kv get rpc_secret)" ]; then
+  # If secret not specified by config, generate random secret
+  if [ -z "$(lucky get-config server-secret)" ]; then
     # Use Lucky random function
     secret=$(lucky random --length 32)
-    lucky kv set rpc_secret="${secret}"
-  fi
+  else
+    # Otherwise set the secret to config value
+    secret=$(lucky get-config server-secret)
+  fi 
+  lucky kv set rpc_secret="${secret}"
+  # Update the relation in order to communicate the change
+  # to related components
+  set_drone_rpc_relation_from_outside_relation_hook
 }
 
 sc_config_check () {
@@ -145,7 +151,22 @@ sc_config_check () {
 }
 
 set_drone_rpc_relation () {
-  lucky relation set --app "rpc_secret=$(lucky kv get rpc_secret)"
-  lucky relation set --app "server_host=$(lucky get-config server-host)"
-  lucky relation set --app "server_proto=$(lucky get-config server-proto)"
+  lucky relation set "rpc_secret=$(lucky kv get rpc_secret)"
+  lucky relation set "server_host=$(lucky get-config server-host)"
+  lucky relation set "server_proto=$(lucky get-config server-proto)"
+}
+
+set_drone_rpc_relation_from_outside_relation_hook () {
+  # For each relation in drone-rpc relations
+  # Set the relation values accordingly
+  for rel_id in "$(lucky relation list-ids -n drone-rpc)" 
+  do
+    echo "rel_id: $rel_id"
+    # Only need to set them if a relation exists
+    if [ -n "$rel_id" ]; then
+      lucky relation set "rpc_secret=$(lucky kv get rpc_secret)" --relation-id $rel_id
+      lucky relation set "server_host=$(lucky get-config server-host)" --relation-id $rel_id
+      lucky relation set "server_proto=$(lucky get-config server-proto)" --relation-id $rel_id
+    fi
+  done
 }

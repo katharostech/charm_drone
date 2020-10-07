@@ -34,7 +34,8 @@ else
     lucky port open ${bind_port}
 fi
 
-# Generate a random secret key for Drone Runner intra-communication
+# Generate a random secret key for Drone Runner intra-communication,
+# unless one is specified by config via "server-secret".
 set_rpc_secret
 rpc_secret=$(lucky kv get rpc_secret)
 

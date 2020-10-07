@@ -38,9 +38,9 @@ set_container_port () {
 
 set_relation_data () {
   lucky container env set \
-    "DRONE_RPC_SECRET=$(lucky relation get --app rpc_secret)" \
-    "DRONE_RPC_HOST=$(lucky relation get --app server_host)" \
-    "DRONE_RPC_PROTO=$(lucky relation get --app server_proto)" \
+    "DRONE_RPC_SECRET=$(lucky relation get rpc_secret)" \
+    "DRONE_RPC_HOST=$(lucky relation get server_host)" \
+    "DRONE_RPC_PROTO=$(lucky relation get server_proto)" \
     "DRONE_RUNNER_CAPACITY=2" \
     "DRONE_RUNNER_NAME=$(hostname)"
   lucky container volume add /var/run/docker.sock /var/run/docker.sock

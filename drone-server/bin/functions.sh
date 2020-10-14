@@ -170,3 +170,17 @@ set_drone_rpc_relation_from_outside_relation_hook () {
     fi
   done
 }
+
+set_drone_starlark_relation () {
+  # By setting the Environment Variables, Lucky will see that they have
+  # changed and thus restart the container with the given information.
+  lucky container env set \
+    "DRONE_CONVERT_PLUGIN_ENDPOINT=$(lucky relation get starlark_endpoint)" \
+    "DRONE_CONVERT_PLUGIN_SECRET=$(lucky relation get starlark_secret)"
+}
+
+remove_drone_starlark_relation () {
+  lucky container env set \
+    "DRONE_CONVERT_PLUGIN_ENDPOINT=" \
+    "DRONE_CONVERT_PLUGIN_SECRET="
+}

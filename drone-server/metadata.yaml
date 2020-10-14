@@ -8,8 +8,6 @@ series:
 description: |
   Drone is a self-service Continuous Delivery platform for busy development teams.
 tags:
-  # Replace "misc" with one or more whitelisted tags from this list:
-  # https://jujucharms.com/docs/stable/authors-charm-metadata
   - ops
   - application_development
 subordinate: false
@@ -18,9 +16,6 @@ provides:
     interface: http
   drone-rpc:
     interface: drone
-# requires:
-#   requires-relation:
-#     interface: interface-name
-# peers:
-#   peer-relation:
-#     interface: interface-name
+requires:
+  drone-starlark:
+    interface: drone-starlark

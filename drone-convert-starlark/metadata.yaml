@@ -1,0 +1,21 @@
+name: drone-convert-starlark
+display-name: Drone Starlark Converter
+summary: >
+  A conversion plugin that provides optional support for generating pipeline configuration 
+  files via Starlark scripting. 
+  Please note this project requires Drone server version 1.4 or higher.
+maintainer: opax@katharostech.com
+series:
+  - bionic
+  - focal
+description: |
+  A conversion plugin that provides optional support for generating pipeline configuration 
+  files via Starlark scripting. 
+  Please note this project requires Drone server version 1.4 or higher.
+tags:
+  - ops
+  - application_development
+subordinate: false
+provides:
+  drone-starlark:
+    interface: drone-starlark
